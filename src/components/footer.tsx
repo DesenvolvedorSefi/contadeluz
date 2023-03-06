@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { SEFI } from "./sefi";
+import { SEFI } from "./logo-sefi";
 
 export default component$(() => {
 	return (

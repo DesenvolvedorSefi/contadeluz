@@ -1,8 +1,10 @@
 import { $, component$, useStore } from "@builder.io/qwik";
 import { type DocumentHead } from "@builder.io/qwik-city";
 import Duvidas from "~/components/duvidas";
+import Modalidades from "~/components/modalidades";
 import Panel from "~/components/panel";
-import { SEFI } from "~/components/sefi";
+import Separator from "~/components/separator";
+import Sobre from "~/components/sobre";
 
 export default component$(() => {
 	const store = useStore({
@@ -121,7 +123,7 @@ export default component$(() => {
 					<div>
 						<div
 							onClick$={() => (store.dono = !store.dono)}
-							class={`cursor-pointer text-xs flex items-center gap-2 mb-4  ${
+							class={`cursor-pointer text-xs flex items-center justify-center gap-2 mb-4  ${
 								!store.dono ? "text-red" : ""
 							}`}
 						>
@@ -176,29 +178,16 @@ export default component$(() => {
 					</div>
 				</div>
 			</Panel>
-			<div class="max-w-5xl text-center md:text-left mx-auto md:grid grid-cols-2 p-8 gap-8 items-center md:py-20">
-				<div>
-					<h3 class="font-extrabold tracking-tighter text-neutral-1 text-5xl mb-4">
-						Já ouviu falar na{" "}
-						<span class="text-yellow font-black">SEFI</span>?
-					</h3>
-					<div class="text-sefi-1">
-						A Sefi Crédito é uma Start Up que atua como
-						correspondente bancário localizada na cidade de
-						Sobral-CE. Temos o compromisso de total transparência
-						com nossos clientes. Nossa central de atendimento está
-						disponível para esclarecimento de dúvidas sobre
-						quaisquer dos valores apresentados.
-					</div>
-				</div>
-				<div class="hidden md:block">
-					<SEFI className="h-40 text-white" />
-				</div>
-			</div>
 
-			<div class="max-w-md mx-auto w-1/2 bg-gradient-to-r from-transparent via-sefi-4 to-transparent h-0.5" />
+			<Sobre />
+
+			<Separator />
 
 			<Duvidas />
+
+			<Separator />
+
+			<Modalidades />
 		</>
 	);
 });

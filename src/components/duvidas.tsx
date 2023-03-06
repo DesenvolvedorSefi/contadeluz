@@ -2,11 +2,11 @@ import { component$ } from "@builder.io/qwik";
 
 export default component$(() => (
 	<div class="mx-auto py-8 md:pb-20 md:pt-16">
-		<h2 class="font-extrabold tracking-tighter text-5xl text-white max-w-2xl mx-auto mb-4 text-center">
+		<h2 class="font-extrabold tracking-tighter text-5xl text-white max-w-2xl mx-auto mb-4 text-center px-8">
 			Ainda está em dúvida sobre fazer o seu empréstimo?
 		</h2>
 		<div>
-			<div class="text-2xl text-sefi-5 font-medium text-center p-4 sm:max-w-lg mx-auto max-w-[340px]">
+			<div class="text-2xl text-sefi-5 font-semibold tracking-tight leading-none text-center p-4 sm:max-w-lg mx-auto max-w-[340px]">
 				Fale com uma de nossas consultoras no WhatsApp e tire todas as
 				suas dúvidas.
 			</div>
