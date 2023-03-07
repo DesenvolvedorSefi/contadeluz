@@ -34,7 +34,6 @@ type Dados = {
 export default component$(() => {
 	const data = useData().value;
 	const { whatsapp } = useContext(AppContext);
-	console.log({ whatsapp });
 
 	// const store = useStore<Dados>({
 	// 	nome: "Anderson Sousa",
@@ -113,9 +112,7 @@ export default component$(() => {
 			Valor+=+${store.valor}%0A
 			Parcelas+=+${store.parcelas}`;
 
-		document.location = "https://wa.me/5588981082050".concat(
-			`?text=${message}`
-		);
+		document.location = whatsapp.concat(`?text=${message}`);
 
 		// const response = await fetch(
 		// 	"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
