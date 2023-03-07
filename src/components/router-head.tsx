@@ -30,6 +30,10 @@ export const RouterHead = component$(() => {
 				content="Faça seu empréstimo na Conta de luz de forma rápida e sem burocracia."
 			/>
 			<meta property="og:image" content="./ogimage.png" />
+			<meta
+				name="keywords"
+				content="empréstimo,crédito,dinheiro,conta,dívidas,serasa,fgts,conta de luz"
+			/>
 
 			{head.meta.map((m) => (
 				<meta {...m} />
