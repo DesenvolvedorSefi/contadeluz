@@ -54,7 +54,9 @@ export default component$(() => {
 			title: "Empréstimo pelo",
 			subtitle: "seu FGTS",
 			description: null,
-			link: context.whatsapp,
+			link: context.whatsapp.concat(
+				"&text=Quero saber sobre o Empréstimo pelo FGTS."
+			),
 		},
 		{
 			icon: (
@@ -78,7 +80,9 @@ export default component$(() => {
 			title: "Empréstimo",
 			subtitle: "Consignado",
 			description: null,
-			link: context.whatsapp,
+			link: context.whatsapp.concat(
+				"&text=Quero saber sobre o Empréstimo Consignado."
+			),
 		},
 		{
 			icon: (
@@ -105,7 +109,9 @@ export default component$(() => {
 			description:
 				"Temos certeza que alguma das nossas soluções vai te ajudar.",
 			linkText: "Chama no Zap",
-			link: context.whatsapp,
+			link: context.whatsapp.concat(
+				"&text=Quero saber quais empréstimos eu posso fazer."
+			),
 		},
 	];
 	return (
