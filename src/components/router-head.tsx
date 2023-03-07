@@ -1,32 +1,47 @@
-import { component$ } from '@builder.io/qwik';
-import { useDocumentHead, useLocation } from '@builder.io/qwik-city';
+import { component$ } from "@builder.io/qwik";
+import { useDocumentHead, useLocation } from "@builder.io/qwik-city";
 
 /**
  * The RouterHead component is placed inside of the document `<head>` element.
  */
 export const RouterHead = component$(() => {
-  const head = useDocumentHead();
-  const loc = useLocation();
+	const head = useDocumentHead();
+	const loc = useLocation();
 
-  return (
-    <>
-      <title>{head.title}</title>
+	return (
+		<>
+			<title>{head.title}</title>
 
-      <link rel="canonical" href={loc.url.href} />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+			<link rel="canonical" href={loc.url.href} />
+			<meta
+				name="viewport"
+				content="width=device-width, initial-scale=1.0"
+			/>
+			<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-      {head.meta.map((m) => (
-        <meta {...m} />
-      ))}
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content="https://metatags.io/" />
+			<meta
+				property="og:title"
+				content="Empréstimo na conta de Luz - Rápido e Fácil - SEFI Crédito"
+			/>
+			<meta
+				property="og:description"
+				content="Faça seu empréstimo na Conta de luz de forma rápida e sem burocracia."
+			/>
+			<meta property="og:image" content="./ogimage.png" />
 
-      {head.links.map((l) => (
-        <link {...l} />
-      ))}
+			{head.meta.map((m) => (
+				<meta {...m} />
+			))}
 
-      {head.styles.map((s) => (
-        <style {...s.props} dangerouslySetInnerHTML={s.style} />
-      ))}
-    </>
-  );
+			{head.links.map((l) => (
+				<link {...l} />
+			))}
+
+			{head.styles.map((s) => (
+				<style {...s.props} dangerouslySetInnerHTML={s.style} />
+			))}
+		</>
+	);
 });

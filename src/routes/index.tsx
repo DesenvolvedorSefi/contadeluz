@@ -48,7 +48,9 @@ export default component$(() => {
 							<img
 								src="./homem-feliz-dinheiro.png"
 								alt="Na SEFI é muito rápido e fácil conseguir o seu empréstimo."
-								class="w-auto h-full"
+								class="w-auto"
+								width={"379"}
+								height={"600"}
 							/>
 						</div>
 					</div>
