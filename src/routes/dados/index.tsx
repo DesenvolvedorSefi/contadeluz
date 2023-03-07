@@ -3,19 +3,34 @@ import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import Duvidas from "~/components/duvidas";
 import Panel from "~/components/panel";
 
-export const useData = routeLoader$(async ({ request }) => {
-	const fd = await request.formData();
-	const valor = fd.get("valor");
-	const parcelas = fd.get("parcelas");
-	return {
-		valor,
-		parcelas,
-	};
+export const useData = routeLoader$(async ({ request, redirect }) => {
+	try {
+		const fd = await request.formData();
+		const valor = fd.get("valor");
+		const parcelas = fd.get("parcelas");
+		return {
+			valor,
+			parcelas,
+		};
+	} catch (e) {
+		redirect(303, "/");
+		return {};
+	}
 });
 
 export default component$(() => {
 	const data = useData().value;
-	const store = useStore({ cpf: "" });
+
+	const store = useStore({
+		nome: "",
+		cpf: "",
+		nascimento: "",
+		cep: "",
+		email: "",
+		telefone: "",
+		valor: data.valor as string,
+		parcelas: data.parcelas as string,
+	});
 
 	const validar = $(() => {
 		console.log({ cpf: store.cpf });
