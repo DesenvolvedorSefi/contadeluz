@@ -1,7 +1,9 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
+import { AppContext } from "~/root";
 import Separator from "./separator";
 
 export default component$(() => {
+	const context = useContext(AppContext);
 	const modalidades = [
 		{
 			//Cartão de Crédito
@@ -25,7 +27,7 @@ export default component$(() => {
 			title: "Empréstimo no",
 			subtitle: "Cartão de Crédito",
 			description: null,
-			link: "https://api.whatsapp.com/send/?phone=5588993432811",
+			link: context.whatsapp,
 		},
 		{
 			//FGTS
@@ -50,7 +52,7 @@ export default component$(() => {
 			title: "Empréstimo pelo",
 			subtitle: "seu FGTS",
 			description: null,
-			link: "https://api.whatsapp.com/send/?phone=5588993432811",
+			link: context.whatsapp,
 		},
 		{
 			icon: (
@@ -74,7 +76,7 @@ export default component$(() => {
 			title: "Empréstimo",
 			subtitle: "Consignado",
 			description: null,
-			link: "https://api.whatsapp.com/send/?phone=5588993432811",
+			link: context.whatsapp,
 		},
 		{
 			icon: (
@@ -101,7 +103,7 @@ export default component$(() => {
 			description:
 				"Temos certeza que alguma das nossas soluções vai te ajudar.",
 			linkText: "Chama no Zap",
-			link: "https://api.whatsapp.com/send/?phone=5588993432811",
+			link: context.whatsapp,
 		},
 	];
 	return (

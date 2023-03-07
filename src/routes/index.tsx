@@ -5,6 +5,7 @@ import Modalidades from "~/components/modalidades";
 import Panel from "~/components/panel";
 import Separator from "~/components/separator";
 import Sobre from "~/components/sobre";
+import Volte from "~/components/volte";
 
 export default component$(() => {
 	const store = useStore({
@@ -53,6 +54,8 @@ export default component$(() => {
 					</div>
 				</div>
 			</div>
+
+			<div id="emprestimo" />
 			<Panel>
 				{/* Valor */}
 				<div>
@@ -181,13 +184,19 @@ export default component$(() => {
 
 			<Sobre />
 
-			<Separator />
+			{/* <Separator className="h-[1px] via-sefi-4" /> */}
 
-			<Duvidas />
+			<div class="bg-sefi-5">
+				<Duvidas />
+			</div>
 
-			<Separator />
+			{/* <Separator className="h-[1px] via-sefi-4" /> */}
 
 			<Modalidades />
+
+			<Separator className="h-[1px] via-sefi-4" />
+
+			<Volte />
 		</>
 	);
 });

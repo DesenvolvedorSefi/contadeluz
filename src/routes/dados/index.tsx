@@ -33,7 +33,40 @@ export default component$(() => {
 	});
 
 	const validar = $(() => {
-		console.log({ cpf: store.cpf });
+		if (store.nome === "") {
+			alert(
+				"Insira o seu nome. Lembre-se que você deve ser o titular da conta de energia."
+			);
+			return false;
+		}
+		if (store.cpf === "") {
+			alert("Insira um CPF válido.");
+			return false;
+		}
+		if (store.nascimento === "") {
+			alert("Insira a data de nascimento.");
+			return false;
+		}
+		if (store.cep === "") {
+			alert("Insira um Cep válido.");
+			return false;
+		}
+		if (store.email === "") {
+			alert("Insira o seu email.");
+			return false;
+		}
+		if (store.telefone === "") {
+			alert("Insira um telefone válido.");
+			return false;
+		}
+		if (store.valor === "") {
+			alert("Escolha um valor entre R$ 500 a R$ 1500.");
+			return false;
+		}
+		if (store.parcelas === "") {
+			alert("Escola um número de parcelas, entre 12x e 20x.");
+			return false;
+		}
 
 		const TestaCPF = (strCPF: string) => {
 			let Soma, Resto;
@@ -59,7 +92,7 @@ export default component$(() => {
 		};
 
 		if (TestaCPF(store.cpf)) {
-			console.log("CPF válido");
+			//TO DO
 		} else {
 			alert(
 				"Parece que o seu CPF não está correto, veja se você digitou corretamente."
@@ -69,7 +102,7 @@ export default component$(() => {
 
 	return (
 		<>
-			<div class="max-w-5xl p-4 md:p-8">
+			<div class="max-w-5xl mx-auto p-4 md:p-8">
 				<h2 class="font-extrabold mb-2 tracking-tighter text-5xl text-white">
 					Está quase lá!
 				</h2>
@@ -88,18 +121,22 @@ export default component$(() => {
 								class="input-field"
 								name="nome"
 								placeholder="Maria Aparecida dos Santos"
+								value={store.nome}
+								onChange$={(event) =>
+									(store.nome = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input col-span-2 md:col-span-1">
 							<div class="input-label">CPF</div>
 							<input
+								class="input-field"
+								name="cpf"
+								placeholder="123.456.789-00"
+								value={store.cpf}
 								onChange$={(event) =>
 									(store.cpf = event?.target.value)
 								}
-								class="input-field"
-								name="cpf"
-								value={store.cpf}
-								placeholder="123.456.789-00"
 							/>
 						</label>
 						<label class="input">
@@ -109,6 +146,10 @@ export default component$(() => {
 								class="input-field"
 								name="nascimento"
 								placeholder="10/06/1975"
+								value={store.nascimento}
+								onChange$={(event) =>
+									(store.nascimento = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input">
@@ -117,6 +158,10 @@ export default component$(() => {
 								class="input-field"
 								name="cep"
 								placeholder="62011-000"
+								value={store.cep}
+								onChange$={(event) =>
+									(store.cep = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input col-span-2 sm:col-span-1">
@@ -126,6 +171,10 @@ export default component$(() => {
 								name="email"
 								type="email"
 								placeholder="seu@email.com"
+								value={store.email}
+								onChange$={(event) =>
+									(store.email = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input col-span-2 sm:col-span-1">
@@ -134,6 +183,10 @@ export default component$(() => {
 								class="input-field"
 								name="telefone"
 								placeholder="(00) 9 1234-5678"
+								value={store.telefone}
+								onChange$={(event) =>
+									(store.telefone = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input">
@@ -142,7 +195,10 @@ export default component$(() => {
 								class="input-field"
 								name="valor"
 								placeholder="Valor"
-								value={data.valor}
+								value={store.valor}
+								onChange$={(event) =>
+									(store.valor = event.target.value)
+								}
 							/>
 						</label>
 						<label class="input">
@@ -152,7 +208,10 @@ export default component$(() => {
 								name="parcelas"
 								placeholder="Parcelas"
 								type="number"
-								value={data.parcelas}
+								value={store.parcelas}
+								onChange$={(event) =>
+									(store.parcelas = event.target.value)
+								}
 							/>
 						</label>
 						<div class="col-span-full sm:mt-4 text-center">

@@ -1,4 +1,8 @@
-import { component$ } from "@builder.io/qwik";
+import {
+	component$,
+	createContextId,
+	useContextProvider,
+} from "@builder.io/qwik";
 import {
 	QwikCityProvider,
 	RouterOutlet,
@@ -8,7 +12,13 @@ import { RouterHead } from "./components/router-head";
 
 import "./global.css";
 
+export const AppContext = createContextId<{ whatsapp: string }>("app");
+
 export default component$(() => {
+	useContextProvider(AppContext, {
+		whatsapp: "https://api.whatsapp.com/send/?phone=5588993432811",
+	});
+
 	return (
 		<QwikCityProvider>
 			<head>

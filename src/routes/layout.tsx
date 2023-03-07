@@ -1,9 +1,11 @@
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, Slot, useContext } from "@builder.io/qwik";
 import Footer from "~/components/footer";
+import { AppContext } from "~/root";
 
 import Header from "../components/header";
 
 export default component$(() => {
+	const context = useContext(AppContext);
 	return (
 		<>
 			<main class={`bg-sefi min-h-screen relative`}>
@@ -13,7 +15,7 @@ export default component$(() => {
 				</section>
 				<Footer />
 				<a
-					href="https://api.whatsapp.com/send/?phone=5588993432811&text=Preciso%20de%20ajuda%20para%20fazer%20o%20meu%20empr%C3%A9stimo.&type=phone_number&app_absent=0"
+					href={`${context.whatsapp}&text=Preciso%20de%20ajuda%20para%20fazer%20o%20meu%20empr%C3%A9stimo.&type=phone_number&app_absent=0`}
 					target="_blank"
 					class="fixed shadow-xl shadow-neutral-4/50 grid place-items-center bottom-2 right-2 rounded-full text-white bg-green w-16 h-16"
 				>
