@@ -1,5 +1,6 @@
 import { $, component$, useStore } from "@builder.io/qwik";
 import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import dayjs from "dayjs";
 import Duvidas from "~/components/duvidas";
 import Panel from "~/components/panel";
 
@@ -18,61 +19,41 @@ export const useData = routeLoader$(async ({ request, redirect }) => {
 	}
 });
 
+type Dados = {
+	nome?: string;
+	cpf?: string;
+	nascimento?: string;
+	cep?: string;
+	email?: string;
+	telefone?: string;
+	valor?: string;
+	parcelas?: string;
+};
+
 export default component$(() => {
 	const data = useData().value;
 
-	const store = useStore({
-		nome: "",
-		cpf: "",
-		nascimento: "",
-		cep: "",
-		email: "",
-		telefone: "",
+	const store = useStore<Dados>({
+		nome: undefined,
+		cpf: "02390275311",
+		nascimento: "2005-03-08",
+		cep: undefined,
+		email: undefined,
+		telefone: undefined,
 		valor: data.valor as string,
 		parcelas: data.parcelas as string,
 	});
 
-	const validar = $(() => {
-		if (store.nome === "") {
-			alert(
-				"Insira o seu nome. Lembre-se que você deve ser o titular da conta de energia."
-			);
-			return false;
-		}
-		if (store.cpf === "") {
-			alert("Insira um CPF válido.");
-			return false;
-		}
-		if (store.nascimento === "") {
-			alert("Insira a data de nascimento.");
-			return false;
-		}
-		if (store.cep === "") {
-			alert("Insira um Cep válido.");
-			return false;
-		}
-		if (store.email === "") {
-			alert("Insira o seu email.");
-			return false;
-		}
-		if (store.telefone === "") {
-			alert("Insira um telefone válido.");
-			return false;
-		}
-		if (store.valor === "") {
-			alert("Escolha um valor entre R$ 500 a R$ 1500.");
-			return false;
-		}
-		if (store.parcelas === "") {
-			alert("Escola um número de parcelas, entre 12x e 20x.");
-			return false;
-		}
-
-		const TestaCPF = (strCPF: string) => {
+	const validar = $(async () => {
+		//Código validador de CPF direto da Receita Federal
+		const TestaCPF = (strCPF?: string) => {
+			if (!strCPF) return false;
 			let Soma, Resto;
 
 			Soma = 0;
 			if (strCPF == "00000000000") return false;
+
+			strCPF = strCPF.replace(/\./g, "").replace(/-/g, "");
 
 			for (let i = 1; i <= 9; i++)
 				Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
@@ -91,36 +72,66 @@ export default component$(() => {
 			return true;
 		};
 
-		if (TestaCPF(store.cpf)) {
-			//TO DO
-		} else {
+		if (!TestaCPF(store.cpf)) {
 			alert(
 				"Parece que o seu CPF não está correto, veja se você digitou corretamente."
 			);
+			return false;
 		}
+
+		if (!dayjs().subtract(18, "year").isAfter(dayjs(store.nascimento))) {
+			alert(
+				"Você precisa ter mais de 18 anos para poder solicitar esse empréstimo."
+			);
+			return false;
+		}
+
+		const response = await fetch(
+			"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify({
+					name: "REQUISIÇÃO CONTA DE LUZ",
+					message: store,
+				}),
+			}
+		);
+
+		console.log({ response });
+
+		return;
 	});
 
 	return (
 		<>
 			<div class="max-w-5xl mx-auto p-4 md:p-8">
-				<h2 class="font-extrabold mb-2 tracking-tighter text-5xl text-white">
-					Está quase lá!
+				<h2 class="font-extrabold mb-2 tracking-tighter text-4xl md:text-7xl text-white">
+					Estamos quase lá!
 				</h2>
-				<div class="text-sefi-5 text-xl font-medium">
-					Só precisamos de poucos dados para darmos andamento ao
+				<div class="text-sefi-5 text-xl font-medium leading-none max-w-[280px]">
+					Só precisamos de poucos dados para continuarmos andamento ao
 					processo.
 				</div>
 			</div>
 
 			<Panel>
 				<div>
-					<form class="form">
+					<form
+						class="form"
+						preventdefault:submit
+						onSubmit$={validar}
+					>
 						<label class="input col-span-2">
 							<div class="input-label">Nome</div>
 							<input
 								class="input-field"
 								name="nome"
 								placeholder="Maria Aparecida dos Santos"
+								required={true}
 								value={store.nome}
 								onChange$={(event) =>
 									(store.nome = event.target.value)
@@ -133,6 +144,7 @@ export default component$(() => {
 								class="input-field"
 								name="cpf"
 								placeholder="123.456.789-00"
+								required={true}
 								value={store.cpf}
 								onChange$={(event) =>
 									(store.cpf = event?.target.value)
@@ -142,10 +154,11 @@ export default component$(() => {
 						<label class="input">
 							<div class="input-label">Data de nascimento</div>
 							<input
-								type="datetime-local"
+								type="date"
 								class="input-field"
 								name="nascimento"
 								placeholder="10/06/1975"
+								required={true}
 								value={store.nascimento}
 								onChange$={(event) =>
 									(store.nascimento = event.target.value)
@@ -158,6 +171,7 @@ export default component$(() => {
 								class="input-field"
 								name="cep"
 								placeholder="62011-000"
+								required={true}
 								value={store.cep}
 								onChange$={(event) =>
 									(store.cep = event.target.value)
@@ -171,6 +185,7 @@ export default component$(() => {
 								name="email"
 								type="email"
 								placeholder="seu@email.com"
+								required={true}
 								value={store.email}
 								onChange$={(event) =>
 									(store.email = event.target.value)
@@ -182,7 +197,8 @@ export default component$(() => {
 							<input
 								class="input-field"
 								name="telefone"
-								placeholder="(00) 9 1234-5678"
+								placeholder="(00) 9 0000-0000"
+								required={true}
 								value={store.telefone}
 								onChange$={(event) =>
 									(store.telefone = event.target.value)
@@ -195,6 +211,7 @@ export default component$(() => {
 								class="input-field"
 								name="valor"
 								placeholder="Valor"
+								required={true}
 								value={store.valor}
 								onChange$={(event) =>
 									(store.valor = event.target.value)
@@ -207,6 +224,7 @@ export default component$(() => {
 								class="input-field"
 								name="parcelas"
 								placeholder="Parcelas"
+								required={true}
 								type="number"
 								value={store.parcelas}
 								onChange$={(event) =>
@@ -224,9 +242,7 @@ export default component$(() => {
 							</div>
 							<div class="mt-4">
 								<button
-									onClick$={validar}
-									preventdefault:click
-									type="button"
+									type="submit"
 									class="button button-large"
 								>
 									Enviar
