@@ -111,21 +111,19 @@ export default component$(() => {
 					</div>
 				</div>
 				<hr class="my-8 w-full border-t-neutral-2" />
-				<div class="flex flex-col gap-4 sm:flex-row justify-between text-center">
-					<div>
+				<div class="flex flex-col gap-8 sm:flex-row justify-center text-center">
+					<div class="md:w-1/4">
 						<div class="text-5xl font-black text-sefi">
 							R${store.valor}
 						</div>
-						<div class="flex gap-1 text-sefi-4 justify-center md:justify-end">
-							<div class="text-4xl font-black">
-								EM {store.parcela}X
-							</div>
+						<div class="text-sefi-4 text-center text-4xl font-black">
+							EM {store.parcela}X
 						</div>
 					</div>
-					<div>
+					<div class="md:w-1/2">
 						<div
 							onClick$={() => (store.dono = !store.dono)}
-							class={`cursor-pointer text-xs flex items-center justify-center gap-2 mb-4 `}
+							class={`cursor-pointer text-sm flex items-center justify-center gap-2 mb-4 `}
 						>
 							<div
 								class={`checkbox ${
@@ -169,11 +167,18 @@ export default component$(() => {
 								/>
 							</form>
 							<button
-								class="button button-large -mb-4"
+								class="button button-large -mb-4 md:mb-0"
 								onClick$={solicitar}
 							>
 								Solicitar Empréstimo
 							</button>
+						</div>
+					</div>
+					<div class="md:w-1/4">
+						<div class="font-bold text-red text-xl">ATENÇÃO</div>
+						<div class="leading-tight">
+							A SEFI não solicita nenhum pagamento antecipado para
+							fazer o seu empréstimo.
 						</div>
 					</div>
 				</div>
