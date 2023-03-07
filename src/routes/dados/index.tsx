@@ -34,15 +34,28 @@ export default component$(() => {
 	const data = useData().value;
 
 	const store = useStore<Dados>({
-		nome: undefined,
+		nome: "Anderson Sousa",
 		cpf: "02390275311",
-		nascimento: "2005-03-08",
-		cep: undefined,
-		email: undefined,
-		telefone: undefined,
+		nascimento: "1986-04-01",
+		cep: "62011000",
+		email: "and3rsonsousa@outlook.com",
+		telefone: "88981082050",
 		valor: data.valor as string,
 		parcelas: data.parcelas as string,
 	});
+
+	// const store = useStore<Dados>({
+	// 	nome:undefined,
+	// 	cpf:undefined,
+	// 	nascimento:undefined,
+	// 	cep:undefined,
+	// 	email:undefined,
+	// 	telefone:undefined,
+	// 	valor: data.valor as string,
+	// 	parcelas: data.parcelas as string,
+	// });
+
+	const enviando = useStore({ is: false });
 
 	const validar = $(async () => {
 		//Código validador de CPF direto da Receita Federal
@@ -86,6 +99,8 @@ export default component$(() => {
 			return false;
 		}
 
+		enviando.is = true;
+
 		const response = await fetch(
 			"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
 			{
@@ -100,6 +115,8 @@ export default component$(() => {
 				}),
 			}
 		);
+
+		enviando.is = false;
 
 		console.log({ response });
 
@@ -244,7 +261,8 @@ export default component$(() => {
 							<div class="mt-4">
 								<button
 									type="submit"
-									class="button button-large"
+									class="button button-large disabled:bg-neutral-2 disabled:text-neutral-3"
+									disabled={enviando.is}
 								>
 									Enviar
 								</button>
