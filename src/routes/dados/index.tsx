@@ -1,8 +1,9 @@
-import { $, component$, useStore } from "@builder.io/qwik";
+import { $, component$, useContext, useStore } from "@builder.io/qwik";
 import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import dayjs from "dayjs";
 import Duvidas from "~/components/duvidas";
 import Panel from "~/components/panel";
+import { AppContext } from "~/root";
 
 export const useData = routeLoader$(async ({ request, redirect }) => {
 	try {
@@ -32,28 +33,30 @@ type Dados = {
 
 export default component$(() => {
 	const data = useData().value;
-
-	const store = useStore<Dados>({
-		nome: "Anderson Sousa",
-		cpf: "02390275311",
-		nascimento: "1986-04-01",
-		cep: "62011000",
-		email: "and3rsonsousa@outlook.com",
-		telefone: "88981082050",
-		valor: data.valor as string,
-		parcelas: data.parcelas as string,
-	});
+	const { whatsapp } = useContext(AppContext);
+	console.log({ whatsapp });
 
 	// const store = useStore<Dados>({
-	// 	nome:undefined,
-	// 	cpf:undefined,
-	// 	nascimento:undefined,
-	// 	cep:undefined,
-	// 	email:undefined,
-	// 	telefone:undefined,
+	// 	nome: "Anderson Sousa",
+	// 	cpf: "02390275311",
+	// 	nascimento: "1986-04-01",
+	// 	cep: "62011000",
+	// 	email: "and3rsonsousa@outlook.com",
+	// 	telefone: "88981082050",
 	// 	valor: data.valor as string,
 	// 	parcelas: data.parcelas as string,
 	// });
+
+	const store = useStore<Dados>({
+		nome: undefined,
+		cpf: undefined,
+		nascimento: undefined,
+		cep: undefined,
+		email: undefined,
+		telefone: undefined,
+		valor: data.valor as string,
+		parcelas: data.parcelas as string,
+	});
 
 	const enviando = useStore({ is: false });
 
@@ -101,26 +104,39 @@ export default component$(() => {
 
 		enviando.is = true;
 
-		const response = await fetch(
-			"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-				body: JSON.stringify({
-					name: "REQUISIÇÃO CONTA DE LUZ",
-					message: store,
-				}),
-			}
+		const message = `Nome+=+${store.nome}%0A
+			Cpf+=+${store.cpf}%0A
+			Nascimento+=+${dayjs(store.nascimento).format("DD/MM/1986")}%0A
+			CEP+=+${store.cep}%0A
+			Email+=+${store.email}%0A
+			Telefone+=+${store.telefone}%0A
+			Valor+=+${store.valor}%0A
+			Parcelas+=+${store.parcelas}`;
+
+		document.location = "https://wa.me/5588981082050".concat(
+			`?text=${message}`
 		);
+
+		// const response = await fetch(
+		// 	"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
+		// 	{
+		// 		method: "POST",
+		// 		headers: {
+		// 			"Content-Type": "application/json",
+		// 			Accept: "application/json",
+		// 		},
+		// 		body: JSON.stringify({
+		// 			name: "REQUISIÇÃO CONTA DE LUZ",
+		// 			message: store,
+		// 		}),
+		// 	}
+		// );
 
 		enviando.is = false;
 
-		console.log({ response });
+		// console.log({ response });
 
-		return;
+		return false;
 	});
 
 	return (
