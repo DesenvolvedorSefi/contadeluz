@@ -139,7 +139,6 @@ export default component$(() => {
 				<div>
 					<form
 						class="form"
-						action="https://formsubmit.co/ajax/and3rsonsousa@gmail.com"
 						preventdefault:submit
 						onSubmit$={validar}
 					>
