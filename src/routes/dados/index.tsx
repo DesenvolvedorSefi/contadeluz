@@ -112,7 +112,7 @@ export default component$(() => {
 			Valor+=+${store.valor}%0A
 			Parcelas+=+${store.parcelas}`;
 
-		document.location = whatsapp.concat(`?text=${message}`);
+		document.location = whatsapp.concat(`&text=${message}`);
 
 		// const response = await fetch(
 		// 	"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",

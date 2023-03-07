@@ -27,7 +27,9 @@ export default component$(() => {
 			title: "Empréstimo no",
 			subtitle: "Cartão de Crédito",
 			description: null,
-			link: context.whatsapp,
+			link: context.whatsapp.concat(
+				"&text=Quero saber sobre o Empréstimo no Cartão de Crédito."
+			),
 		},
 		{
 			//FGTS
