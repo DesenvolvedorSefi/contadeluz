@@ -8,7 +8,9 @@ export default component$(() => {
 	const context = useContext(AppContext);
 	return (
 		<>
-			<main class={`bg-sefi min-h-screen relative`}>
+			<main
+				class={`bg-gradient-to-b from-sefi via-sefi-4 to-sefi min-h-screen relative`}
+			>
 				<Header />
 				<section>
 					<Slot />
@@ -18,6 +20,7 @@ export default component$(() => {
 					href={`${context.whatsapp}&text=Preciso%20de%20ajuda%20para%20fazer%20o%20meu%20empr%C3%A9stimo.&type=phone_number&app_absent=0`}
 					target="_blank"
 					class="fixed shadow-xl shadow-neutral-4/50 grid place-items-center bottom-2 right-2 rounded-full text-white bg-green w-16 h-16"
+					title="WhatsApp da SEFI"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

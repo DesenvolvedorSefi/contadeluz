@@ -6,9 +6,9 @@ export default component$(() => {
 
 	return (
 		<div class="p-8 md:p-16">
-			<h2 class="text-3xl font-extrabold leading-none tracking-tight text-white text-center">
+			<div class="text-3xl font-extrabold leading-none tracking-tight text-white text-center">
 				Vamos voltar a negociar o seu empréstimo?
-			</h2>
+			</div>
 			<div class="mt-4 text-center">
 				<a class="button shadow-lg shadow-sefi-4/50" href="#emprestimo">
 					Quero meu empréstimo

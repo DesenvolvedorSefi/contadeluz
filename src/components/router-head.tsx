@@ -20,7 +20,7 @@ export const RouterHead = component$(() => {
 			<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 			<meta property="og:type" content="website" />
-			<meta property="og:url" content="https://metatags.io/" />
+			<meta property="og:url" content={loc.url.href} />
 			<meta
 				property="og:title"
 				content="Empréstimo na conta de Luz - Rápido e Fácil - SEFI Crédito"

@@ -5,9 +5,9 @@ export default component$(() => {
 	const context = useContext(AppContext);
 	return (
 		<div class="mx-auto py-8 md:pb-20 md:pt-16">
-			<h2 class="font-extrabold tracking-tighter text-5xl text-white max-w-2xl mx-auto mb-4 text-center px-8">
+			<div class="font-extrabold tracking-tighter text-5xl text-white max-w-2xl mx-auto mb-4 text-center px-8">
 				Ainda está em dúvida sobre fazer o seu empréstimo?
-			</h2>
+			</div>
 			<div>
 				<div class="text-2xl text-sefi-2 font-semibold tracking-tight leading-none text-center p-4 sm:max-w-lg mx-auto max-w-[340px]">
 					Fale com uma de nossas consultoras no WhatsApp e tire todas
@@ -15,7 +15,7 @@ export default component$(() => {
 				</div>
 				<div class="text-center mt-6">
 					<a
-						class="bg-green text-white inline-flex gap-4 px-6 py-2 items-center font-extrabold text-2xl rounded-xl ring-black/5 ring-1 shadow-xl shadow-sefi-4/25"
+						class="bg-green text-white drop-shadow-md inline-flex gap-4 px-6 py-2 items-center font-extrabold text-2xl rounded-xl ring-black/5 ring-1 shadow-xl shadow-sefi-4/25"
 						href={`${context.whatsapp}&text=Preciso%20de%20ajuda%20para%20fazer%20o%20meu%20empr%C3%A9stimo.&type=phone_number&app_absent=0`}
 						target="_blank"
 					>

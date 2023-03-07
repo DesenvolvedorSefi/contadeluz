@@ -3,7 +3,7 @@ import { SEFI } from "./logo-sefi";
 
 export default component$(() => {
 	return (
-		<footer class="bg-sefi-5 text-sefi-3 py-6">
+		<footer class="bg-sefi-5 text-white py-6">
 			<div class="flex items-end flex-col sm:flex-row gap-4 max-w-7xl p-4 md:p-8 ">
 				<div class="w-full text-center sm:text-left">
 					<SEFI className="h-12 mx-auto sm:-ml-2" />

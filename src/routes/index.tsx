@@ -46,7 +46,7 @@ export default component$(() => {
 						</div>
 						<div class="hidden z-0 sm:block absolute right-0 -top-16 w-52 md:w-72">
 							<img
-								src="./homem-feliz-dinheiro.png"
+								src="./homem-feliz-dinheiro.webp"
 								alt="Na SEFI é muito rápido e fácil conseguir o seu empréstimo."
 								class="w-auto"
 								width={"379"}
@@ -61,11 +61,11 @@ export default component$(() => {
 			<Panel>
 				{/* Valor */}
 				<div>
-					<h4
+					<div
 						class={`mb-4 text-lg font-bold uppercase tracking-wider text-center text-neutral-4`}
 					>
 						Quanto você precisa?
-					</h4>
+					</div>
 					<div class="buttons">
 						{[500, 700, 900, 1200, 1500].map((item) => (
 							<div
@@ -89,11 +89,11 @@ export default component$(() => {
 				<hr class="my-8 border-t-neutral-2" />
 				{/* Parcelas */}
 				<div>
-					<h4
+					<div
 						class={`mb-4 text-lg font-bold uppercase tracking-wider text-center text-neutral-4 mx-auto max-w-[240px] sm:max-w-none leading-tight`}
 					>
 						Em quantas parcelas você prefere pagar?
-					</h4>
+					</div>
 					<div class="buttons">
 						{[12, 14, 16, 18, 20].map((item) => (
 							<div class="button-label">
@@ -116,21 +116,16 @@ export default component$(() => {
 						<div class="text-5xl font-black text-sefi">
 							R${store.valor}
 						</div>
-						<div class="flex gap-1 justify-center md:justify-end">
-							<div class="font-bold text-neutral-3 text-2xl">
-								EM
-							</div>
-							<div class="text-4xl font-black text-sefi-4">
-								{store.parcela}X
+						<div class="flex gap-1 text-sefi-4 justify-center md:justify-end">
+							<div class="text-4xl font-black">
+								EM {store.parcela}X
 							</div>
 						</div>
 					</div>
 					<div>
 						<div
 							onClick$={() => (store.dono = !store.dono)}
-							class={`cursor-pointer text-xs flex items-center justify-center gap-2 mb-4  ${
-								!store.dono ? "text-red" : ""
-							}`}
+							class={`cursor-pointer text-xs flex items-center justify-center gap-2 mb-4 `}
 						>
 							<div
 								class={`checkbox ${

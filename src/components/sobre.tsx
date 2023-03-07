@@ -4,10 +4,10 @@ import { SEFI } from "./logo-sefi";
 export default component$(() => (
 	<div class="max-w-5xl text-center md:text-left mx-auto md:grid grid-cols-2 p-8 gap-8 items-center md:py-20">
 		<div>
-			<h3 class="font-extrabold tracking-tighter text-neutral-1 text-5xl mb-4 max-w-xs">
+			<div class="font-extrabold tracking-tighter text-neutral-1 text-5xl mb-4 max-w-xs">
 				Já ouviu falar na{" "}
 				<span class="text-yellow font-black">SEFI</span>?
-			</h3>
+			</div>
 			<div class="text-sefi-1">
 				A Sefi Crédito é uma Start Up que atua como correspondente
 				bancário localizada na cidade de Sobral-CE. Temos o compromisso

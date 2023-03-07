@@ -135,7 +135,7 @@ export default component$(() => {
 						<div class="bg-sefi-4 flex flex-col justify-between p-4 rounded-xl text-white hover:bg-sefi-5 transition">
 							<div>
 								<div>{icon}</div>
-								<h4 class="leading-none font-bold my-2">
+								<div class="leading-none font-bold my-2">
 									<span class="uppercase text-sm tracking-wide">
 										{title}
 									</span>
@@ -143,7 +143,7 @@ export default component$(() => {
 									<span class="text-yellow text-2xl leading-none">
 										{subtitle}
 									</span>
-								</h4>
+								</div>
 							</div>
 							{description && (
 								<p class="leading-none mb-2">{description}</p>

@@ -139,9 +139,9 @@ export default component$(() => {
 	return (
 		<>
 			<div class="max-w-5xl mx-auto p-4 md:p-8">
-				<h2 class="font-extrabold mb-2 tracking-tighter text-4xl md:text-7xl text-white">
+				<div class="font-extrabold mb-2 tracking-tighter text-4xl md:text-7xl text-white">
 					Estamos quase lá!
-				</h2>
+				</div>
 				<div class="text-sefi-5 text-xl font-medium leading-none max-w-[280px]">
 					Só precisamos de poucos dados para continuarmos andamento ao
 					processo.
@@ -263,9 +263,9 @@ export default component$(() => {
 							/>
 						</label>
 						<div class="col-span-full sm:mt-4 text-center">
-							<h3 class="text-2xl font-bold text-sefi-4 tracking-tighter">
+							<div class="text-2xl font-bold text-sefi-4 tracking-tighter">
 								Viu como foi rápido?
-							</h3>
+							</div>
 							<div class="leading-tight max-w-xs mx-auto text-neutral-4">
 								Agora é só enviar e aguardar que entraremos em
 								contato rapidinho.
