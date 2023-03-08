@@ -26,7 +26,8 @@ export default component$(() => {
 			),
 			title: "Empréstimo no",
 			subtitle: "Cartão de Crédito",
-			description: null,
+			description:
+				"Transforme seu limite disponível do cartão de crédito em dinheiro na sua conta!",
 			link: context.whatsapp.concat(
 				"&text=Quero saber sobre o Empréstimo no Cartão de Crédito."
 			),
@@ -53,7 +54,8 @@ export default component$(() => {
 			),
 			title: "Empréstimo pelo",
 			subtitle: "seu FGTS",
-			description: null,
+			description:
+				"Liberte seu dinheiro parado no FGTS e realize seu sonho.",
 			link: context.whatsapp.concat(
 				"&text=Quero saber sobre o Empréstimo pelo FGTS."
 			),
@@ -79,7 +81,8 @@ export default component$(() => {
 			),
 			title: "Empréstimo",
 			subtitle: "Consignado",
-			description: null,
+			description:
+				"Crédito com pagamento direto da pensão e benefício para aposentados e pensionistas.",
 			link: context.whatsapp.concat(
 				"&text=Quero saber sobre o Empréstimo Consignado."
 			),
@@ -146,7 +149,9 @@ export default component$(() => {
 								</div>
 							</div>
 							{description && (
-								<p class="leading-none mb-2">{description}</p>
+								<p class="leading-tight text-sm mb-2">
+									{description}
+								</p>
 							)}
 
 							<div>
@@ -160,3 +165,5 @@ export default component$(() => {
 		</div>
 	);
 });
+
+// Conta de luz - Dinheiro rápido e fácil até para negativados!Pagamento direto da conta de energia.
