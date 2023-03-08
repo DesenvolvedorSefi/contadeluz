@@ -111,8 +111,8 @@ export default component$(() => {
 					</div>
 				</div>
 				<hr class="my-8 w-full border-t-neutral-2" />
-				<div class="flex flex-col gap-8 sm:flex-row justify-center text-center">
-					<div class="md:w-1/4">
+				<div class="flex flex-col gap-8 flex-wrap lg:flex-nowrap sm:flex-row justify-center text-center">
+					<div class="lg:w-1/4">
 						<div class="text-5xl font-black text-sefi">
 							R${store.valor}
 						</div>
@@ -120,7 +120,14 @@ export default component$(() => {
 							EM {store.parcela}X
 						</div>
 					</div>
-					<div class="md:w-1/2">
+					<div class="mx-auto max-w-xs lg:w-1/4">
+						<div class="font-bold text-red text-xl">ATENÇÃO</div>
+						<div class="leading-tight">
+							A SEFI não solicita nenhum pagamento antecipado para
+							fazer o seu empréstimo.
+						</div>
+					</div>
+					<div class="lg:w-1/2">
 						<div
 							onClick$={() => (store.dono = !store.dono)}
 							class={`cursor-pointer text-sm flex items-center justify-center gap-2 mb-4 `}
@@ -172,13 +179,6 @@ export default component$(() => {
 							>
 								Solicitar Empréstimo
 							</button>
-						</div>
-					</div>
-					<div class="md:w-1/4">
-						<div class="font-bold text-red text-xl">ATENÇÃO</div>
-						<div class="leading-tight">
-							A SEFI não solicita nenhum pagamento antecipado para
-							fazer o seu empréstimo.
 						</div>
 					</div>
 				</div>

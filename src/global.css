@@ -6,6 +6,26 @@ body {
 	@apply antialiased text-neutral-5;
 }
 
+.animate-bg {
+	animation: animate infinite alternate 0.2s;
+	background-size: 400%;
+	background-position: top left;
+	/* transition: background-position 1s; */
+}
+.animate-bg:hover {
+	background-position: bottom right;
+}
+
+@keyframes animate {
+	0% {
+		background-position: left;
+	}
+
+	100% {
+		background-position: right;
+	}
+}
+
 .buttons {
 	@apply flex gap-2 justify-between flex-wrap;
 }
@@ -49,7 +69,7 @@ body {
 }
 
 .button {
-	@apply px-6 py-3 rounded-lg inline-flex font-bold bg-yellow text-sefi-4 hover:bg-green transition hover:text-white whitespace-nowrap;
+	@apply px-6 py-3 rounded-lg inline-flex font-bold bg-yellow text-sefi-4 hover:bg-green transition hover:text-white text-center leading-none;
 }
 
 .button-large {
