@@ -17,7 +17,8 @@ export default component$(() => (
 			</div>
 		</div>
 		<div class="hidden md:block">
-			<SEFI className="h-40 text-white" />
+			{/* <SEFI className="h-40 text-white" /> */}
+			<img src="/equipe.jpg" alt="Equipe SEFI" class="rounded-xl" />
 		</div>
 	</div>
 ));

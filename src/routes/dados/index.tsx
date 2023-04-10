@@ -1,9 +1,13 @@
-import { $, component$, useContext, useStore } from "@builder.io/qwik";
-import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import { component$, useStore } from "@builder.io/qwik";
+import {
+	Form,
+	globalAction$,
+	routeLoader$,
+	type DocumentHead,
+} from "@builder.io/qwik-city";
 import dayjs from "dayjs";
 import Duvidas from "~/components/duvidas";
 import Panel from "~/components/panel";
-import { AppContext } from "~/root";
 
 export const useData = routeLoader$(async ({ request, redirect }) => {
 	try {
@@ -20,6 +24,56 @@ export const useData = routeLoader$(async ({ request, redirect }) => {
 	}
 });
 
+export const useAction = globalAction$(async (data, { fail }) => {
+	const TestaCPF = (strCPF?: string) => {
+		if (!strCPF) return false;
+		let Soma, Resto;
+
+		Soma = 0;
+		if (strCPF == "00000000000") return false;
+
+		strCPF = strCPF.replace(/\./g, "").replace(/-/g, "");
+
+		for (let i = 1; i <= 9; i++)
+			Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+		Resto = (Soma * 10) % 11;
+
+		if (Resto == 10 || Resto == 11) Resto = 0;
+		if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+		Soma = 0;
+		for (let i = 1; i <= 10; i++)
+			Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+		Resto = (Soma * 10) % 11;
+
+		if (Resto == 10 || Resto == 11) Resto = 0;
+		if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+		return true;
+	};
+
+	if (!TestaCPF(data["cpf"] as string)) {
+		return fail(500, {
+			message:
+				"Parece que o seu CPF não está correto, veja se você digitou corretamente.",
+		});
+	}
+
+	if (
+		!dayjs()
+			.subtract(18, "year")
+			.isAfter(dayjs(data.nascimento as string))
+	) {
+		return fail(500, {
+			message:
+				"Você precisa ter mais de 18 anos para poder solicitar esse empréstimo.",
+		});
+	}
+
+
+	// console.log({ data });
+	// redirect(302, "/tudocerto");
+});
+
 type Dados = {
 	nome?: string;
 	cpf?: string;
@@ -33,108 +87,65 @@ type Dados = {
 
 export default component$(() => {
 	const data = useData().value;
-	const { whatsapp } = useContext(AppContext);
-
-	// const store = useStore<Dados>({
-	// 	nome: "Anderson Sousa",
-	// 	cpf: "02390275311",
-	// 	nascimento: "1986-04-01",
-	// 	cep: "62011000",
-	// 	email: "and3rsonsousa@outlook.com",
-	// 	telefone: "88981082050",
-	// 	valor: data.valor as string,
-	// 	parcelas: data.parcelas as string,
-	// });
+	const action = useAction();
+	// const { whatsapp } = useContext(AppContext);
 
 	const store = useStore<Dados>({
-		nome: undefined,
-		cpf: undefined,
-		nascimento: undefined,
-		cep: undefined,
-		email: undefined,
-		telefone: undefined,
+		nome: "Anderson Sousa",
+		cpf: "02390275311",
+		nascimento: "1986-04-01",
+		cep: "62011000",
+		email: "and3rsonsousa@outlook.com",
+		telefone: "88981082050",
 		valor: data.valor as string,
 		parcelas: data.parcelas as string,
 	});
 
-	const enviando = useStore({ is: false });
+	// const store = useStore<Dados>({
+	// 	nome: undefined,
+	// 	cpf: undefined,
+	// 	nascimento: undefined,
+	// 	cep: undefined,
+	// 	email: undefined,
+	// 	telefone: undefined,
+	// 	valor: data.valor as string,
+	// 	parcelas: data.parcelas as string,
+	// });
 
-	const validar = $(async () => {
-		//Código validador de CPF direto da Receita Federal
-		const TestaCPF = (strCPF?: string) => {
-			if (!strCPF) return false;
-			let Soma, Resto;
+	// const validar = $(async () => {
+	//Código validador de CPF direto da Receita Federal
 
-			Soma = 0;
-			if (strCPF == "00000000000") return false;
+	// const message = `Nome+=+${store.nome}%0A
+	// 	Cpf+=+${store.cpf}%0A
+	// 	Nascimento+=+${dayjs(store.nascimento).format("DD/MM/1986")}%0A
+	// 	CEP+=+${store.cep}%0A
+	// 	Email+=+${store.email}%0A
+	// 	Telefone+=+${store.telefone}%0A
+	// 	Valor+=+${store.valor}%0A
+	// 	Parcelas+=+${store.parcelas}`;
 
-			strCPF = strCPF.replace(/\./g, "").replace(/-/g, "");
+	// document.location = whatsapp.concat(`&text=${message}`);
+	// document.location = whatsapp.concat(`&text=${message}`);
 
-			for (let i = 1; i <= 9; i++)
-				Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
-			Resto = (Soma * 10) % 11;
+	// const response = await fetch(
+	// 	"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
+	// 	{
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 			Accept: "application/json",
+	// 		},
+	// 		body: JSON.stringify({
+	// 			name: "REQUISIÇÃO CONTA DE LUZ",
+	// 			message: store,
+	// 		}),
+	// 	}
+	// );
 
-			if (Resto == 10 || Resto == 11) Resto = 0;
-			if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+	// console.log({ response });
 
-			Soma = 0;
-			for (let i = 1; i <= 10; i++)
-				Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
-			Resto = (Soma * 10) % 11;
-
-			if (Resto == 10 || Resto == 11) Resto = 0;
-			if (Resto != parseInt(strCPF.substring(10, 11))) return false;
-			return true;
-		};
-
-		if (!TestaCPF(store.cpf)) {
-			alert(
-				"Parece que o seu CPF não está correto, veja se você digitou corretamente."
-			);
-			return false;
-		}
-
-		if (!dayjs().subtract(18, "year").isAfter(dayjs(store.nascimento))) {
-			alert(
-				"Você precisa ter mais de 18 anos para poder solicitar esse empréstimo."
-			);
-			return false;
-		}
-
-		enviando.is = true;
-
-		const message = `Nome+=+${store.nome}%0A
-			Cpf+=+${store.cpf}%0A
-			Nascimento+=+${dayjs(store.nascimento).format("DD/MM/1986")}%0A
-			CEP+=+${store.cep}%0A
-			Email+=+${store.email}%0A
-			Telefone+=+${store.telefone}%0A
-			Valor+=+${store.valor}%0A
-			Parcelas+=+${store.parcelas}`;
-
-		document.location = whatsapp.concat(`&text=${message}`);
-
-		// const response = await fetch(
-		// 	"https://formsubmit.co/ajax/and3rsonsousa@gmail.com",
-		// 	{
-		// 		method: "POST",
-		// 		headers: {
-		// 			"Content-Type": "application/json",
-		// 			Accept: "application/json",
-		// 		},
-		// 		body: JSON.stringify({
-		// 			name: "REQUISIÇÃO CONTA DE LUZ",
-		// 			message: store,
-		// 		}),
-		// 	}
-		// );
-
-		enviando.is = false;
-
-		// console.log({ response });
-
-		return false;
-	});
+	// 	return false;
+	// });
 
 	return (
 		<>
@@ -150,10 +161,11 @@ export default component$(() => {
 
 			<Panel>
 				<div>
-					<form
+					<Form
 						class="form"
-						preventdefault:submit
-						onSubmit$={validar}
+						// preventdefault:submit
+						// onSubmit$={validar}
+						action={action}
 					>
 						<label class="input col-span-2">
 							<div class="input-label">Nome</div>
@@ -270,17 +282,22 @@ export default component$(() => {
 								Agora é só enviar e aguardar que entraremos em
 								contato rapidinho.
 							</div>
+							{action.value?.failed && (
+								<div class="mt-4 bg-red px-4 inline-block mx-auto py-2 rounded-lg text-white">
+									{action.value.message}
+								</div>
+							)}
+
 							<div class="mt-4">
 								<button
 									type="submit"
 									class="button button-large disabled:bg-neutral-2 disabled:text-neutral-3"
-									disabled={enviando.is}
 								>
 									Enviar
 								</button>
 							</div>
 						</div>
-					</form>
+					</Form>
 				</div>
 			</Panel>
 
