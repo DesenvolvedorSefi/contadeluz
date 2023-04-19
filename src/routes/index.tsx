@@ -193,7 +193,7 @@ export default component$(() => {
 
 			<Modalidades />
 
-			<Separator className="h-[1px] via-sefi-4" />
+			<Separator classNames="h-[1px] via-sefi-4" />
 
 			<Volte />
 		</>

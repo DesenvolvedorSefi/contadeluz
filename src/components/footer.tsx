@@ -8,7 +8,7 @@ export default component$(() => {
 				<div class="w-full text-center sm:text-left">
 					<SEFI
 						version="horizontal"
-						className="h-12 mx-auto sm:-ml-3"
+						classNames="h-12 mx-auto sm:-ml-3"
 					/>
 					<p class="text-xs">
 						CNPJ - 31.852.178/0001-94 <br />

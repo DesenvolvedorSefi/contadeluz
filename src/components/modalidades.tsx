@@ -154,7 +154,7 @@ export default component$(() => {
 							)}
 
 							<div>
-								<Separator className="h-[1px] via-neutral-5/50 w-full my-2" />
+								<Separator classNames="h-[1px] via-neutral-5/50 w-full my-2" />
 								<a href={link}>{linkText ?? "Saiba mais"}</a>
 							</div>
 						</div>
