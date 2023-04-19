@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { SEFI } from "./logo-sefi";
 
 export default component$(() => (
 	<div class="max-w-5xl text-center md:text-left mx-auto md:grid grid-cols-2 p-8 gap-8 items-center md:py-20">
