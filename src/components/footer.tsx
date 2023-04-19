@@ -6,10 +6,7 @@ export default component$(() => {
 		<footer class="bg-sefi-5 text-white py-6">
 			<div class="flex items-end flex-col sm:flex-row gap-4 max-w-7xl p-4 md:p-8 ">
 				<div class="w-full text-center sm:text-left">
-					<SEFI
-						version="horizontal"
-						className="h-12 mx-auto sm:-ml-3"
-					/>
+					<SEFI version="horizontal" class="h-12 mx-auto sm:-ml-3" />
 					<p class="text-xs">
 						CNPJ - 31.852.178/0001-94 <br />
 						Rua Menino de Deus, 760

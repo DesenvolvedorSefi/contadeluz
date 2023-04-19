@@ -127,15 +127,14 @@ export default component$(() => {
 			</div>
 			<div class="grid grid-cols-2 md:grid-cols-4 p-4 gap-2">
 				{modalidades.map(
-					({
-						icon,
-						title,
-						subtitle,
-						description,
-						link,
-						linkText,
-					}) => (
-						<div class="bg-sefi-4 flex flex-col justify-between p-4 rounded-xl text-white hover:bg-sefi-5 transition">
+					(
+						{ icon, title, subtitle, description, link, linkText },
+						i
+					) => (
+						<div
+							class="bg-sefi-4 flex flex-col justify-between p-4 rounded-xl text-white hover:bg-sefi-5 transition"
+							key={i}
+						>
 							<div>
 								<div>{icon}</div>
 								<div class="leading-none font-bold my-2">
@@ -155,7 +154,7 @@ export default component$(() => {
 							)}
 
 							<div>
-								<Separator className="h-[1px] via-neutral-5/50 w-full my-2" />
+								<Separator class="h-[1px] via-neutral-5/50 w-full my-2" />
 								<a href={link}>{linkText ?? "Saiba mais"}</a>
 							</div>
 						</div>

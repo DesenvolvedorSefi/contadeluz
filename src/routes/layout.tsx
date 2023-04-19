@@ -69,7 +69,7 @@ const clientes = [
 export default component$(() => {
 	const context = useContext(AppContext);
 	const animate = useStore({
-		className: "opacity-0 -translate-y-12",
+		class: "opacity-0 -translate-y-12",
 		in: false,
 		client: 0,
 	});
@@ -80,9 +80,9 @@ export default component$(() => {
 			const time = Math.floor(Math.random() * 10000) + 5100;
 
 			setTimeout(() => {
-				animate.className = "opacity-100 translate-y-0";
+				animate.class = "opacity-100 translate-y-0";
 				setTimeout(() => {
-					animate.className = "opacity-0 -translate-y-12";
+					animate.class = "opacity-0 -translate-y-12";
 					loop();
 				}, 5000);
 			}, time);
@@ -120,7 +120,7 @@ export default component$(() => {
 					</svg>
 				</a>
 				<div
-					class={`transition z-[100] max-w-[240px] fixed shadow-lg shadow-sefi-4/50 bg-gradient-to-br  top-4 right-4 p-0.5 text-sm  rounded-md from-yellow via-green to-yellow text-white ${animate.className} animate-bg`}
+					class={`transition z-[100] max-w-[240px] fixed shadow-lg shadow-sefi-4/50 bg-gradient-to-br  top-4 right-4 p-0.5 text-sm  rounded-md from-yellow via-green to-yellow text-white ${animate.class} animate-bg`}
 				>
 					<div class="bg-neutral-5 px-3 py-1.5 rounded">
 						<span class="font-semibold text-green">

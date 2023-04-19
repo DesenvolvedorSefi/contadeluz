@@ -67,8 +67,9 @@ export default component$(() => {
 						Quanto você precisa?
 					</div>
 					<div class="buttons">
-						{[500, 700, 900, 1200, 1500].map((item) => (
+						{[500, 700, 900, 1200, 1500].map((item, i) => (
 							<div
+								key={i}
 								class={`button-label ${
 									item > 1000 ? "basis-1/2" : "basis-1/3"
 								}`}
@@ -95,8 +96,8 @@ export default component$(() => {
 						Em quantas parcelas você prefere pagar?
 					</div>
 					<div class="buttons">
-						{[12, 14, 16, 18, 20].map((item) => (
-							<div class="button-label">
+						{[12, 14, 16, 18, 20].map((item, i) => (
+							<div class="button-label" key={i}>
 								<input
 									id={`parcela-${item}`}
 									type="radio"
@@ -186,17 +187,17 @@ export default component$(() => {
 
 			<Sobre />
 
-			{/* <Separator className="h-[1px] via-sefi-4" /> */}
+			{/* <Separator class="h-[1px] via-sefi-4" /> */}
 
 			<div class="bg-sefi-5">
 				<Duvidas />
 			</div>
 
-			{/* <Separator className="h-[1px] via-sefi-4" /> */}
+			{/* <Separator class="h-[1px] via-sefi-4" /> */}
 
 			<Modalidades />
 
-			<Separator className="h-[1px] via-sefi-4" />
+			<Separator class="h-[1px] via-sefi-4" />
 
 			<Volte />
 		</>

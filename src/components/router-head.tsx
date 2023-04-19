@@ -35,16 +35,16 @@ export const RouterHead = component$(() => {
 				content="empréstimo,crédito,dinheiro,conta,dívidas,serasa,fgts,conta de luz"
 			/>
 
-			{head.meta.map((m) => (
-				<meta {...m} />
+			{head.meta.map((m, i) => (
+				<meta {...m} key={i} />
 			))}
 
-			{head.links.map((l) => (
-				<link {...l} />
+			{head.links.map((l, i) => (
+				<link {...l} key={i} />
 			))}
 
-			{head.styles.map((s) => (
-				<style {...s.props} dangerouslySetInnerHTML={s.style} />
+			{head.styles.map((s, i) => (
+				<style {...s.props} dangerouslySetInnerHTML={s.style} key={i} />
 			))}
 		</>
 	);
