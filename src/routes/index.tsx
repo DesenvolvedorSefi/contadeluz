@@ -187,17 +187,13 @@ export default component$(() => {
 
 			<Sobre />
 
-			{/* <Separator class="h-[1px] via-sefi-4" /> */}
-
 			<div class="bg-sefi-5">
 				<Duvidas />
 			</div>
 
-			{/* <Separator class="h-[1px] via-sefi-4" /> */}
-
 			<Modalidades />
 
-			<Separator class="h-[1px] via-sefi-4" />
+			<Separator className="h-[1px] via-sefi-4" />
 
 			<Volte />
 		</>
